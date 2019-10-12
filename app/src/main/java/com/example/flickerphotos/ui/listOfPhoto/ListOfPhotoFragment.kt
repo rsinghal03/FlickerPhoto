@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.flickerphotos.FlickerPhotoApplication
 import com.example.flickerphotos.R
 import com.example.flickerphotos.data.model.Item
+import com.example.flickerphotos.extension.visible
 import com.example.flickerphotos.ui.BaseFragment
 import kotlinx.android.synthetic.main.fragment_list_photo.*
 import javax.inject.Inject
@@ -24,11 +25,6 @@ class ListOfPhotoFragment : BaseFragment(), ListOfPhotoContract.View {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         FlickerPhotoApplication.getInstance().flickerPhotoComponent.inject(this)
-        listOfPhotoPresenter.attachView(this)
-        listOfPhotoPresenter.getListOfPhoto()
-        listOfPhotoAdapter = ListOfPhotoAdapter()
-        recycler_view_id.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-        recycler_view_id.adapter = listOfPhotoAdapter
     }
 
     override fun onCreateView(
@@ -42,11 +38,17 @@ class ListOfPhotoFragment : BaseFragment(), ListOfPhotoContract.View {
 
     override fun setListOfPhoto(listOfItem: List<Item>) {
         listOfPhotoAdapter.updateList(listOfItem as ArrayList)
+        recycler_view_id.visible()
     }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        listOfPhotoPresenter.attachView(this)
+        listOfPhotoPresenter.getListOfPhoto()
+        listOfPhotoAdapter = ListOfPhotoAdapter(requireContext())
+        recycler_view_id.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+        recycler_view_id.adapter = listOfPhotoAdapter
     }
 
     override fun onDestroy() {

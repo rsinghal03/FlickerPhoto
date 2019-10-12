@@ -1,13 +1,17 @@
 package com.example.flickerphotos.ui.listOfPhoto
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.AppCompatImageView
+import androidx.core.widget.ImageViewCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.flickerphotos.R
 import com.example.flickerphotos.data.model.Item
 
-class ListOfPhotoAdapter : RecyclerView.Adapter<ListOfPhotoAdapter.ViewHolder>() {
+class ListOfPhotoAdapter(private val context: Context) : RecyclerView.Adapter<ListOfPhotoAdapter.ViewHolder>() {
 
     lateinit var listOfItem: ArrayList<Item>
 
@@ -19,7 +23,7 @@ class ListOfPhotoAdapter : RecyclerView.Adapter<ListOfPhotoAdapter.ViewHolder>()
     override fun getItemCount(): Int = listOfItem.size-1
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
+        Glide.with(context).load(listOfItem[position].media.m).into(holder.imageView)
     }
 
     fun updateList(listOfItem: ArrayList<Item>) {
@@ -28,6 +32,6 @@ class ListOfPhotoAdapter : RecyclerView.Adapter<ListOfPhotoAdapter.ViewHolder>()
     }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-
+        val imageView = view.findViewById<AppCompatImageView>(R.id.item_view)
     }
 }

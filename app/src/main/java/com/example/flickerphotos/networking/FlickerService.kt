@@ -9,5 +9,5 @@ import java.util.*
 interface FlickerService {
 
     @GET("services/feeds/photos_public.gne")
-    fun getFlickerPhotoResponse(@Query("format") format: String): Observable<FlickerResponse>
+    fun getFlickerPhotoResponse(@Query("format") format: String, @Query("nojsoncallback") noJsonCallback: Int): Observable<FlickerResponse>
 }

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.flickerphotos.R
 import com.example.flickerphotos.extension.add
+import com.example.flickerphotos.ui.listOfPhoto.ListOfPhotoFragment
 
 class MainActivity : AppCompatActivity() {
 
