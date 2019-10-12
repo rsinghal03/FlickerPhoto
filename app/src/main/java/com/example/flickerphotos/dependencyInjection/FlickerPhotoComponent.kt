@@ -1,6 +1,6 @@
 package com.example.flickerphotos.dependencyInjection
 
-import com.example.flickerphotos.ui.ListOfPhotoFragment
+import com.example.flickerphotos.ui.listOfPhoto.ListOfPhotoFragment
 import dagger.Component
 
 @Component(modules = [FlickerPhotoModule::class])

@@ -7,10 +7,10 @@ import io.reactivex.Observable
 
 const val FORMAT = "json"
 
-class FlickerServiceProviderImpl : FlickerServiceProvider {
+class FlickerServiceProviderImpl(private val flickerApiClient: FlickerApiClient) : FlickerServiceProvider {
 
     override fun getFlickerResponse(): Observable<FlickerResponse> {
-        val flickerService = FlickerApiClient().getRetrofit().create(FlickerService::class.java)
+        val flickerService = flickerApiClient.getRetrofit().create(FlickerService::class.java)
         return flickerService.getFlickerPhotoResponse(FORMAT)
     }
 }
