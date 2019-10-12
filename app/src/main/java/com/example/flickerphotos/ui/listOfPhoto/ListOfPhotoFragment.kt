@@ -4,14 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.flickerphotos.FlickerPhotoApplication
 import com.example.flickerphotos.R
 import com.example.flickerphotos.data.model.Item
+import com.example.flickerphotos.extension.replace
 import com.example.flickerphotos.extension.visible
 import com.example.flickerphotos.ui.BaseFragment
+import com.example.flickerphotos.ui.largePhoto.LargePhotoFragment
 import kotlinx.android.synthetic.main.fragment_list_photo.*
 import javax.inject.Inject
 
@@ -49,6 +50,8 @@ class ListOfPhotoFragment : BaseFragment(), ListOfPhotoContract.View {
         listOfPhotoAdapter = ListOfPhotoAdapter(requireContext())
         recycler_view_id.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
         recycler_view_id.adapter = listOfPhotoAdapter
+
+        listOfPhotoAdapter.onItemClick = { replace(LargePhotoFragment.getInstance(it), R.id.container,true)}
     }
 
     override fun onDestroy() {
