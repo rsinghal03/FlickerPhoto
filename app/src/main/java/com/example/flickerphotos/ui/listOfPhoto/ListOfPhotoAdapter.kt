@@ -14,7 +14,8 @@ import com.bumptech.glide.Glide
 import com.example.flickerphotos.R
 import com.example.flickerphotos.data.model.Item
 
-class ListOfPhotoAdapter(private val context: Context) : BaseAdapter(), AdapterView.OnItemClickListener {
+class ListOfPhotoAdapter(private val context: Context) : BaseAdapter(),
+    AdapterView.OnItemClickListener {
 
     override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         onItemClick?.invoke(listOfItem[position].media.m)
@@ -38,8 +39,6 @@ class ListOfPhotoAdapter(private val context: Context) : BaseAdapter(), AdapterV
             viewHolder = ViewHolder()
             viewHolder.imageView = row.findViewById(R.id.item_view)
             row.setTag(viewHolder)
-//            row.setTag(POSITION_KEY, viewHolder)
-//
         } else {
             viewHolder = row.getTag(VIEW_HOLDER_KEY) as ViewHolder?
         }
