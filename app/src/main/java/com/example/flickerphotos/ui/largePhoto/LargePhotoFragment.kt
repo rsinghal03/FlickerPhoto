@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.example.flickerphotos.R
 import com.example.flickerphotos.ui.BaseFragment
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.large_photo_fragment.*
 
 const val URL_KEY = "url"
