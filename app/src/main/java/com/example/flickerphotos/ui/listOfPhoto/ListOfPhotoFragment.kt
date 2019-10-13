@@ -39,7 +39,10 @@ class ListOfPhotoFragment : BaseFragment(), ListOfPhotoContract.View {
 
     override fun setListOfPhoto(listOfItem: List<Item>) {
         listOfPhotoAdapter.updateList(listOfItem as ArrayList)
-        recycler_view_id.visible()
+        grid_view_id.adapter = listOfPhotoAdapter
+        listOfPhotoAdapter.onItemClick = { replace(LargePhotoFragment.getInstance(it), R.id.container,true)}
+        grid_view_id.visible()
+        grid_view_id.onItemClickListener = listOfPhotoAdapter
     }
 
 
@@ -48,10 +51,6 @@ class ListOfPhotoFragment : BaseFragment(), ListOfPhotoContract.View {
         listOfPhotoPresenter.attachView(this)
         listOfPhotoPresenter.getListOfPhoto()
         listOfPhotoAdapter = ListOfPhotoAdapter(requireContext())
-        recycler_view_id.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
-        recycler_view_id.adapter = listOfPhotoAdapter
-
-        listOfPhotoAdapter.onItemClick = { replace(LargePhotoFragment.getInstance(it), R.id.container,true)}
     }
 
     override fun onDestroy() {
